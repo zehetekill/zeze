@@ -1,0 +1,111 @@
+/*Limpar fomrataçõs padrão */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-size: 1em;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background: #e6e6e6;
+}
+
+/*Layout */
+#area-cabecalho {
+  background-color: rgb(34, 84, 74);
+  padding: 15px;
+  text-align: center;
+}
+
+#area-logo, #area-menu {
+  padding: 10px;
+}
+
+#area-principal{
+  width: 950px;
+  margin: 0 auto; /* auto paramargm autoática */
+}
+
+#area-postagens, #area-lateral{
+  background: rgb(34, 84, 74);
+}
+
+#area-postagens{
+  width: 700px;
+  margin-right: auto;
+  float: left;
+}
+
+#area-lateral{
+  width: 250px;
+  float: right;
+  color: #ffffff;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.postagem{
+  width: 660px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgb(255, 255, 255);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#rodape {
+  clear: both;
+  text-align: center;
+  padding: 15px;
+  background: #CCC;
+}
+
+#leia{
+  color: #22544a;
+  padding: 0px;
+    }
+
+
+/*Formatação do menu */
+a{
+  text-decoration: none;
+}
+a:link, a:visited{
+  color: #ffffff;
+  padding: 8px 12px;
+}
+
+a:hover{
+  color: #000000;
+  background: #FFF;
+
+}
+
+/*Formatação em geral */
+h1{
+  color: #ffffff;
+  font-size: 2.5em;
+  }
+
+.branco {
+  color: rgb(21, 255, 0);
+}
+.Energia {
+  color: white
+}
+
+#borda {
+  border-color: rgb(25, 195, 9)
+}
+
+#form {
+  background-color: rgb(34, 84, 74);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#final {
+  margin-right: auto;
+}
+
+p {
+  font-size: larger;
+}

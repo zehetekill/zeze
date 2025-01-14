@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Chatbot</title>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="pringles.png" alt="Chef Illustration">
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">ChatBot</div>
+            <div class="chat-messages" id="chatMessages">
+              <div class="message bot">Olá! Como posso ajudar você?</div>
+            </div>
+            <div class="chat-input">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="Digite sua mensagem..."
+              />
+              <button id="sendButton">Enviar</button>
+            </div>
+          </div>
+      
+    <script>
+        const messagesContainer = document.getElementById("chatMessages");
+        const userInput = document.getElementById("userInput");
+        const sendButton = document.getElementById("sendButton");
+  
+        // Função para obter a resposta do bot
+        function getBotResponse(userMessage) {
+          const responses = {
+            oi: "Olá! Tudo bem?",
+            olá: "Oi! Como você está?",
+            "e aí": "Tudo certo? Como posso ajudar?",
+            opa: "Oi! Que bom te ver aqui!",
+            "bom dia": "Bom dia! Como está seu dia até agora?",
+            "boa tarde": "Boa tarde! Precisa de algo?",
+            "boa noite": "Boa noite! Espero que esteja bem!",
+  
+            "fala aí": "Opa! Tudo tranquilo por aí?",
+            oie: "Oiee! Tudo em cima?",
+  
+            "fala tu": "Fala tu! Qual a boa?",
+  
+            "yo yo": "Yo yo! Na paz?",
+            "tá osso": "Tá osso? Conta aí!",
+  
+            "vamo que vamo": "Vamo que vamo! Tudo sussa?",
+  
+            "tá no grau?": "Tá no grau, né? Suave!",
+  
+            "bão?": "Bão demais? Como tá?",
+  
+            "mó vibe": "Mó vibe boa por aqui! E você?",
+            "tá ligado né": "Tá ligado né? Cola aí!",
+  
+            "eae!": "E aí?! Suave?",
+            "eae?": "E aí?! Suave?",
+            "blz!": "Beleza?! Como tá?",
+            "blz?": "Beleza?! Como tá?",
+            "suave!": "Suave?! Na paz?",
+            "suave?": "Suave?! Na paz?",
+            "falae!": "Fala aí?! Qual foi?!",
+            "falae?": "Fala aí?! Qual foi?!",
+            "opa!": "Opa?! Chegou agora?!",
+            "opa?": "Opa?! Chegou agora?!",
+            "oii!": "Oi, oi?! Tudo certo?!",
+            "oii?": "Oi, oi?! Tudo certo?!",
+            "salve!": "Salveee?! Como tamo?!",
+            "salve?": "Salveee?! Como tamo?!",
+            "yo!": "Yo?! Qual é?!",
+            "yo?": "Yo?! Qual é?!",
+            "ae!": "Aê?! Qual a boa?!",
+            "ae?": "Aê?! Qual a boa?!",
+            "tá ligado!": "Tá ligado, né?! Vamo trocar ideia?!",
+            "tá ligado?": "Tá ligado, né?! Vamo trocar ideia?!",
+            "oie!": "Oieee?! Tranquilo?!",
+            "oie?": "Oieee?! Tranquilo?!",
+            "êa!": "Êa?! Bora nessa?!",
+            "êa?": "Êa?! Bora nessa?!",
+            "fala tu!": "Fala tuuu?! De boa?!",
+            "fala tu?": "Fala tuuu?! De boa?!",
+            "cé!": "Céé?! Tá suave?!",
+            "cé?": "Céé?! Tá suave?!",
+            "vish!": "Vishhh?! Conta aí?!",
+            "vish?": "Vishhh?! Conta aí?!",
+            "iae!": "Iae?! Na moral?!",
+            "iae?": "Iae?! Na moral?!",
+            "qlqé!": "Qualqueré?! Como tamo?!",
+            "qlqé?": "Qualqueré?! Como tamo?!",
+            "opaa!": "Opaa?! Firmão?!",
+            "opaa?": "Opaa?! Firmão?!",
+            "bão!": "Bão?! Só alegria?!",
+            "bão?": "Bão?! Só alegria?!",
+            "chegai!": "Chegai?! Qual é a fita?!",
+            "chegai?": "Chegai?! Qual é a fita?!",
+            "eae!": "Tudo certo por aqui, e você?",
+            "eae?": "Tudo certo por aqui, e você?",
+            "blz!": "Beleza pura! E aí, como tá?",
+            "blz?": "Beleza pura! E aí, como tá?",
+            "suave!": "Na paz, e contigo?",
+            "suave?": "Na paz, e contigo?",
+            "falae!": "Só tranquilidade! O que conta de novo?",
+            "falae?": "Só tranquilidade! O que conta de novo?",
+            "opa!": "Opa, firmeza! O que tá pegando?",
+            "opa?": "Opa, firmeza! O que tá pegando?",
+            "oii!": "Oi, oi! Tudo tranquilo por aí?",
+            "oii?": "Oi, oi! Tudo tranquilo por aí?",
+            "salve!": "Salve! Só alegria, e você?",
+            "salve?": "Salve! Só alegria, e você?",
+            "yo!": "Yo! Tá tudo em ordem por aqui. E contigo?",
+            "yo?": "Yo! Tá tudo em ordem por aqui. E contigo?",
+            "ae!": "Aê! Como tão as coisas por aí?",
+            "ae?": "Aê! Como tão as coisas por aí?",
+            "tá ligado!": "Tá ligado, tudo de boa! O que manda?",
+            "tá ligado?": "Tá ligado, tudo de boa! O que manda?",
+            "oie!": "Oieee! Tudo certinho por aqui, e aí?",
+            "oie?": "Oieee! Tudo certinho por aqui, e aí?",
+            "êa!": "Êa! Tranquilidade total. Qual é a boa?",
+            "êa?": "Êa! Tranquilidade total. Qual é a boa?",
+            "fala tu!": "Fala tu! Tá tudo na paz por aqui. E aí?",
+            "fala tu?": "Fala tu! Tá tudo na paz por aqui. E aí?",
+            "cé!": "Céé! Tudo suave. Bora trocar ideia?",
+            "cé?": "Céé! Tudo suave. Bora trocar ideia?",
+            "vish!": "Vish! Aqui tá tranquilo. E você?",
+            "vish?": "Vish! Aqui tá tranquilo. E você?",
+            "iae!": "Iae! Só sossego. Como cê tá?",
+            "iae?": "Iae! Só sossego. Como cê tá?",
+            "qlqé!": "Qualqueré! Tudo de boa. E aí?",
+            "qlqé?": "Qualqueré! Tudo de boa. E aí?",
+            "opaa!": "Opaa! Na paz por aqui. Qual é a fita?",
+            "opaa?": "Opaa! Na paz por aqui. Qual é a fita?",
+            "bão!": "Bão demais! E por aí?",
+            "bão?": "Bão demais! E por aí?",
+            "chegai!": "Chegai! Tá tudo certo por aqui. E aí?",
+            "chegai?": "Chegai! Tá tudo certo por aqui. E aí?",
+            s: "Que bom, em que posso ajudar?",
+            ss: "Que bom, em que posso ajudar?",
+            S: "Que bom, em que posso ajudar?",
+            SS: "Que bom, em que posso ajudar?",
+            sim: "Que bom, em que posso ajudar?",
+            Sim: "Que bom, em que posso ajudar?",
+            SIM: "Que bom, em que posso ajudar?",
+  
+            //italiano
+            "como faz Pollo alla cacciatora":
+              "Tempere pedaços de frango com sal, pimenta e doure no azeite. Adicione alho, cebola, cenoura, salsão e refogue. Acrescente vinho tinto, tomate pelado, alecrim, louro e cozinhe em fogo baixo até o frango ficar macio.",
+            "como faz Frango ensopado com ervas":
+              "Tempere pedaços de frango com sal e pimenta. Doure no azeite, adicione alho, cebola, cenoura e refogue. Acrescente caldo de galinha, tomilho, alecrim e cozinhe até ficar macio.",
+            "como faz Melanzane alla parmigiana":
+              "Corte berinjelas em fatias finas, salgue e deixe drenar. Doure as fatias em azeite. Monte camadas alternando berinjela, molho de tomate, parmesão e mussarela. Finalize com queijo e asse até dourar.",
+            "como faz Frittura di pesce":
+              "Misture anéis de lula, camarões e peixes em pedaços pequenos com farinha de trigo e farinha de milho. Frite em óleo quente até dourar e sirva com limão.",
+            "como faz Polpette al sugo":
+              "Misture carne moída, pão amanhecido, ovo, parmesão, alho e salsa. Modele as almôndegas, doure no azeite, adicione molho de tomate e cozinhe até ficarem macias.",
+            "como faz Cacciucco":
+              "Refogue alho, cebola, cenoura, salsão e pimenta no azeite. Adicione frutos do mar, vinho tinto, tomate pelado e caldo de peixe. Cozinhe até engrossar e sirva com pão.",
+          };
+  
+          return (
+            responses[userMessage.toLowerCase()] ||
+            "Desculpe, não entendi. Pode reformular? Se quiser saber algo sobre receitas italianas, esses são os pratos disponíveis: Pollo alla cacciatora, Frango ensopado com ervas, Melanzane alla parmigiana, Frittura di pesce, Polpette al sugo, Cacciucco."
+          );
+        }
+  
+        // Adiciona mensagens ao chat
+        function addMessage(content, sender) {
+          const messageElement = document.createElement("div");
+          messageElement.classList.add("message", sender);
+          messageElement.textContent = content;
+          messagesContainer.appendChild(messageElement);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+  
+        // Envia a mensagem do usuário e obtém resposta do bot
+        function sendMessage() {
+          const userMessage = userInput.value.trim();
+          if (userMessage === "") return;
+  
+          addMessage(userMessage, "user");
+          userInput.value = "";
+  
+          setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            addMessage(botResponse, "bot");
+          }, 500); // Simula um pequeno atraso na resposta
+        }
+  
+        // Evento de clique no botão
+        sendButton.addEventListener("click", sendMessage);
+  
+        // Evento de pressionar Enter
+        userInput.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") sendMessage();
+        });
+      </script>
+    </body>
+  </html>
